@@ -1,73 +1,109 @@
-# Welcome to your Lovable project
 
-## Project info
+# College Event Radar - Campus Event Aggregator Platform
 
-**URL**: https://lovable.dev/projects/f8dcc9fd-732c-4b89-94f2-0e7d29479352
+College Event Radar is a modern web application that helps students discover tech talks, hackathons, and workshops happening across multiple colleges and universities. This platform makes it easy to find, filter, and submit tech-related events.
 
-## How can I edit this code?
+## 🌟 Features
 
-There are several ways of editing your application.
+- **Event Discovery**: Browse a comprehensive dashboard of tech events from multiple colleges
+- **Event Submission**: Submit new events with detailed information
+- **Advanced Filtering**: Filter events by date, event type, college, and text search
+- **Responsive Design**: Optimized for both desktop and mobile devices
+- **Event Details**: View comprehensive information about each event
 
-**Use Lovable**
+## 🚀 Getting Started
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/f8dcc9fd-732c-4b89-94f2-0e7d29479352) and start prompting.
+### Prerequisites
 
-Changes made via Lovable will be committed automatically to this repo.
+- Node.js (v14 or later)
+- npm or yarn
 
-**Use your preferred IDE**
+### Installation
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
+1. Clone the repository:
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+git clone https://github.com/yourusername/college-event-radar.git
+cd college-event-radar
 ```
 
-**Edit a file directly in GitHub**
+2. Install dependencies:
+```sh
+npm install
+# or
+yarn install
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+3. Start the development server:
+```sh
+npm run dev
+# or
+yarn dev
+```
 
-**Use GitHub Codespaces**
+4. Open your browser and navigate to `http://localhost:8080`
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🧰 Technology Stack
 
-## What technologies are used for this project?
+- **React**: Front-end library for building user interfaces
+- **TypeScript**: Static typing for improved development experience
+- **Vite**: Next-generation front-end tooling
+- **React Router**: Navigation and routing
+- **Tailwind CSS**: Utility-first CSS framework
+- **shadcn/ui**: High-quality React components
+- **React Hook Form**: Form validation and handling
+- **Zod**: Schema validation
+- **Tanstack Query**: Data fetching and state management
+- **date-fns**: Date manipulation utility
+- **Lucide React**: Beautiful, consistent icons
 
-This project is built with:
+## 📱 Application Structure
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- `src/components/`: Reusable UI components
+- `src/pages/`: Application pages and routes
+- `src/data/`: Mock data for events and colleges
+- `src/types/`: TypeScript type definitions
+- `src/lib/`: Utility functions and shared logic
 
-## How can I deploy this project?
+## 🎨 UI Components
 
-Simply open [Lovable](https://lovable.dev/projects/f8dcc9fd-732c-4b89-94f2-0e7d29479352) and click on Share -> Publish.
+### Core Pages
+1. **Index**: Main dashboard showing all events with filtering options
+2. **EventDetails**: Detailed view of a specific event
+3. **SubmitEvent**: Form for submitting new events
 
-## Can I connect a custom domain to my Lovable project?
+### Reusable Components
+1. **EventCard**: Display event information in a card format
+2. **EventFilter**: Filter controls for the event list
+3. **EventList**: Display a list of events based on filters
+4. **Navbar**: Navigation and header component
 
-Yes, you can!
+## 🔄 Data Flow
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+1. Events are stored in `src/data/events.ts` (in a real application, this would be fetched from a backend)
+2. The `EventList` component receives filter criteria from `EventFilter`
+3. Filtered events are displayed as `EventCard` components
+4. Clicking an event card navigates to the `EventDetails` page
+5. New events can be submitted through the `SubmitEvent` form
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## 🚀 Future Enhancements
+
+- User authentication and personalized event recommendations
+- Email notifications for upcoming events
+- Event registration functionality
+- Integration with college calendars through APIs
+- Event comments and ratings
+- Social sharing features
+- Dark mode toggle
+
+## 📝 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🙏 Acknowledgements
+
+- All colleges and universities that host amazing tech events
+- The open-source community for the libraries and tools used in this project
+
+---
+
+Made with ❤️ for tech enthusiasts and college students
