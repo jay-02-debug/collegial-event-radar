@@ -29,7 +29,7 @@ interface EventFilterProps {
 
 const EventFilter = ({ onFilterChange }: EventFilterProps) => {
   const [dateRange, setDateRange] = useState<DateRange | undefined>();
-  const [selectedType, setSelectedType] = useState<EventType | undefined>();
+  const [selectedType, setSelectedType] = useState<EventType | null>(null);
   const [selectedCollege, setSelectedCollege] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState<string>("");
 
@@ -37,7 +37,7 @@ const EventFilter = ({ onFilterChange }: EventFilterProps) => {
     onFilterChange({
       startDate: dateRange?.from,
       endDate: dateRange?.to,
-      type: selectedType,
+      type: selectedType || undefined,
       collegeId: selectedCollege || undefined,
       searchQuery: searchQuery || undefined,
     });
@@ -45,7 +45,7 @@ const EventFilter = ({ onFilterChange }: EventFilterProps) => {
 
   const clearFilters = () => {
     setDateRange(undefined);
-    setSelectedType(undefined);
+    setSelectedType(null);
     setSelectedCollege("");
     setSearchQuery("");
     
@@ -113,14 +113,14 @@ const EventFilter = ({ onFilterChange }: EventFilterProps) => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
         <Select
-          value={selectedType}
-          onValueChange={(value: EventType | undefined) => setSelectedType(value)}
+          value={selectedType || "all"}
+          onValueChange={(value) => setSelectedType(value === "all" ? null : value as EventType)}
         >
           <SelectTrigger>
             <SelectValue placeholder="Event Type" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value={undefined}>All Types</SelectItem>
+            <SelectItem value="all">All Types</SelectItem>
             <SelectItem value="tech">Tech Talk</SelectItem>
             <SelectItem value="hackathon">Hackathon</SelectItem>
             <SelectItem value="workshop">Workshop</SelectItem>
