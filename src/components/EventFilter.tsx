@@ -21,33 +21,31 @@ import { Input } from "@/components/ui/input";
 import { College, EventType, FilterOptions } from "@/types";
 import { colleges } from "@/data/events";
 import { cn } from "@/lib/utils";
+import { DateRange } from "react-day-picker";
 
 interface EventFilterProps {
   onFilterChange: (filters: FilterOptions) => void;
 }
 
 const EventFilter = ({ onFilterChange }: EventFilterProps) => {
-  const [dateRange, setDateRange] = useState<{
-    from?: Date;
-    to?: Date;
-  }>({});
-  const [selectedType, setSelectedType] = useState<EventType | "">("");
+  const [dateRange, setDateRange] = useState<DateRange | undefined>();
+  const [selectedType, setSelectedType] = useState<EventType | undefined>();
   const [selectedCollege, setSelectedCollege] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState<string>("");
 
   const handleSearch = () => {
     onFilterChange({
-      startDate: dateRange.from,
-      endDate: dateRange.to,
-      type: selectedType as EventType | undefined,
+      startDate: dateRange?.from,
+      endDate: dateRange?.to,
+      type: selectedType,
       collegeId: selectedCollege || undefined,
       searchQuery: searchQuery || undefined,
     });
   };
 
   const clearFilters = () => {
-    setDateRange({});
-    setSelectedType("");
+    setDateRange(undefined);
+    setSelectedType(undefined);
     setSelectedCollege("");
     setSearchQuery("");
     
@@ -55,8 +53,8 @@ const EventFilter = ({ onFilterChange }: EventFilterProps) => {
   };
 
   const hasActiveFilters = !!(
-    dateRange.from ||
-    dateRange.to ||
+    dateRange?.from ||
+    dateRange?.to ||
     selectedType ||
     selectedCollege ||
     searchQuery
@@ -82,11 +80,11 @@ const EventFilter = ({ onFilterChange }: EventFilterProps) => {
                 variant="outline"
                 className={cn(
                   "w-[240px] justify-start text-left font-normal",
-                  !dateRange.from && !dateRange.to && "text-muted-foreground"
+                  !dateRange?.from && !dateRange?.to && "text-muted-foreground"
                 )}
               >
                 <CalendarIcon className="mr-2 h-4 w-4" />
-                {dateRange.from ? (
+                {dateRange?.from ? (
                   dateRange.to ? (
                     <>
                       {format(dateRange.from, "MMM d, yyyy")} -{" "}
@@ -114,12 +112,15 @@ const EventFilter = ({ onFilterChange }: EventFilterProps) => {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-        <Select value={selectedType} onValueChange={setSelectedType}>
+        <Select
+          value={selectedType}
+          onValueChange={(value: EventType | undefined) => setSelectedType(value)}
+        >
           <SelectTrigger>
             <SelectValue placeholder="Event Type" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All Types</SelectItem>
+            <SelectItem value={undefined}>All Types</SelectItem>
             <SelectItem value="tech">Tech Talk</SelectItem>
             <SelectItem value="hackathon">Hackathon</SelectItem>
             <SelectItem value="workshop">Workshop</SelectItem>
